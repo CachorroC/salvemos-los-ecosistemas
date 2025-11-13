@@ -80,12 +80,6 @@ export async function addArticle(
       );
     }
 
-
-    return {
-      ...prevState,
-      ...inputForm
-    };
-
   } catch ( error ) {
     console.log(
       error

@@ -1,33 +1,26 @@
+import { bodyMedium } from '#@/styles/typography.module.css';
 import { Article } from '#@/types/article';
-import { Route } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 
 export default function NewsCard(
   {
-    article 
-  }: { article: Article } 
+    article
+  }: { article: Article }
 ) {
   const {
-    title, description, url, urlToImage, source 
+    title, description, urlToImage, source, content
   } = article;
 
   return (
-    <div className="news-card">
-      <Image
+    <div>
+      <img
         src={urlToImage || 'https://via.placeholder.com/150'}
         alt={title}
       />
       <h3>{title}</h3>
-      <p>{description}</p>
+      <p>{ description }</p>
+      <sub className={bodyMedium}>{content}</sub>
       <small>{source?.name}</small>
-      <Link
-        href={url as Route}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Read more
-      </Link>
+
     </div>
   );
 }

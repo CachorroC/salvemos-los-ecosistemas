@@ -4,6 +4,29 @@ import { useFormActionContext } from '#@/app/context/form-action-context';
 import styles from '#@/styles/form-styles.module.css';
 import { type } from '../../../../.next/dev/types/routes';
 
+
+function formatDateToYYYYMMDD(
+  date
+) {
+  const year = date.getFullYear();
+
+  const month = String(
+    date.getMonth() + 1
+  )
+    .padStart(
+      2, '0'
+    ); // Months are 0-indexed, so add 1
+
+  const day = String(
+    date.getDate()
+  )
+    .padStart(
+      2, '0'
+    );
+
+  return `${ year }-${ month }-${ day }`;
+}
+
 export function ArticleForm () {
   const {
     formState,
@@ -13,7 +36,7 @@ export function ArticleForm () {
 
   return ( <div
     className={styles.formContainer}
-  >
+           >
     <h1 className={styles.formTitle}>Nuevo Post</h1>
     <form action={formAction}>
       <div className={styles.formGroup}>
@@ -40,7 +63,7 @@ export function ArticleForm () {
       <label className={styles.formLabel}>
         descripción
         <input
-          className={styles.formTextarea}
+          className={styles.formInput}
           name="description"
           type="text"
           defaultValue={formState.description}
@@ -60,7 +83,18 @@ export function ArticleForm () {
           className={styles.formTextarea}
           name="date"
           type="date"
-          defaultValue={formState.date.toISOString()}
+          defaultValue={formatDateToYYYYMMDD(
+            formState.date
+          )}
+        />
+      </label>
+      <label className={styles.formLabel}>
+        url de la imagen
+        <input
+          className={styles.formInput}
+          name="urlToImage"
+          type="text"
+          defaultValue={formState.urlToImage}
         />
       </label>
       <button
