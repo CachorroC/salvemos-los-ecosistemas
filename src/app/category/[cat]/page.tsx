@@ -1,3 +1,5 @@
+import NewsList from '#@/components/NewsList';
+
 const API_KEY = process.env.NEWSAPI_KEY;
 export default async function Page({
   params,

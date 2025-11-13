@@ -8,7 +8,7 @@ export default function NewsCard({ article }: { article: Article }) {
 
   return (
     <div className="news-card">
-      <Image
+      <img
         src={urlToImage || 'https://via.placeholder.com/150'}
         alt={title}
       />

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint": "eslint",
     "styles:tcm": "tcm src",
+
     "sass": "sass --no-source-map src:src && tcm src",
-    "lint": "next lint --fix --strict && next lint --strict",
     "devbuild": "sass --no-source-map src:src && tcm src && eslint --fix . && next build",
-    "build": "next build",
-    "dev": "URL=beta.rsasesorjuridico.com NEXTAUTH_URL=https://beta.rsasesorjuridico.com next dev",
+    "build": "next build --webpack",
+    "dev": "sass --no-source-map src:src && tcm src && URL=beta.rsasesorjuridico.com NEXTAUTH_URL=https://beta.rsasesorjuridico.com next dev --turbopack",
     "start": "next start",
     "db:migrate": "prisma migrate dev --name init --create-only && prisma generate",
     "db:push": "prisma db push",
@@ -22,6 +23,7 @@
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "sass": "^1.94.0",
     "typed-css-modules": "^0.9.1",
     "typed-scss-modules": "^8.1.1"
   },

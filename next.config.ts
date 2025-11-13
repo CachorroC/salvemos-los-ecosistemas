@@ -3,10 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
 
   output: 'standalone',
-  experimental: {
-    typedRoutes : true,
-    esmExternals: false
-  },
+  typedRoutes : true,
 
   async headers() {
     return [
