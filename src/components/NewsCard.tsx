@@ -1,5 +1,8 @@
-import { bodyMedium } from '#@/styles/typography.module.css';
+import {  containerEnabled } from '#@/styles/elevated-card.module.css';
+import { bodyMedium, labelMedium, titleMedium } from '#@/styles/typography.module.css';
 import { Article } from '#@/types/article';
+import { Route } from 'next';
+import Link from 'next/link';
 
 export default function NewsCard(
   {
@@ -7,19 +10,20 @@ export default function NewsCard(
   }: { article: Article }
 ) {
   const {
-    title, description, urlToImage, source, content
+    title, description, urlToImage, source, content, id
   } = article;
 
   return (
-    <div>
+    <div className={containerEnabled}>
       <img
         src={urlToImage || 'https://via.placeholder.com/150'}
         alt={title}
       />
-      <h3>{title}</h3>
-      <p>{ description }</p>
+      <h3 className={titleMedium}>{title}</h3>
+      <p className={labelMedium}>{ description }</p>
       <sub className={bodyMedium}>{content}</sub>
-      <small>{source?.name}</small>
+      <small>{ source?.name }</small>
+      <Link href={`/articulos/${ id }` as Route}>Read more</Link>
 
     </div>
   );

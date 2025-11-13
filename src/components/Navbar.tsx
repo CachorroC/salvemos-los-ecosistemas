@@ -1,4 +1,12 @@
-import Link from 'next/link';
+'use client';
+import { useNavigationContext } from '#@/app/context/navigation-context';
+import styles from '#@/styles/layout.module.css';
+import { Route } from 'next';
+import { DrawerMenuButton } from './nav-buttons';
+import { NavLink } from './NavLink';
+import { Suspense } from 'react';
+import { Drawer } from './Drawer';
+import { Loader } from './main-loader';
 
 const categories = [
   'business',
@@ -9,26 +17,50 @@ const categories = [
 ];
 
 export default function Navbar() {
+
+
+  const {
+    isNavOpen
+  } = useNavigationContext();
+
   return (
-    <nav className="navbar">
-      <h1>🗞️ React News</h1>
-      <div className="nav-links">
-        <Link href="/">Home</Link>
-        {categories.map(
-          (
-            cat 
-          ) => {
-            return (
-              <Link
-                key={cat}
-                href={`/category/${ cat }`}
-              >
-                {cat}
-              </Link>
-            );
-          } 
-        )}
-      </div>
-    </nav>
+    <div className={styles.header}>
+      <DrawerMenuButton />
+      <NavLink
+        key={'home'}
+        iconLabel={'home'}
+        textLabel={'Inicio'}
+        hrefLabel={'/' as Route}
+      />
+      {isNavOpen && (
+        <Suspense fallback={<Loader />}>
+          <Drawer>
+            <DrawerMenuButton />
+
+            <NavLink
+              iconLabel={'contact_support'}
+              textLabel={'contacto'}
+              hrefLabel={'/articulos'}
+            />
+
+            <NavLink
+              iconLabel={'contact_support'}
+              textLabel={'n8uevo articulo'}
+              hrefLabel={'/articulos/nuevo'}
+            />
+            {categories.map(
+              (
+                cat
+              ) => {
+                return (
+                  <NavLink key={ cat } iconLabel={ '' } textLabel={ cat } hrefLabel={ `/category/${ cat }` } />
+                );
+              }
+            )}
+          </Drawer>
+        </Suspense>
+      )}
+    </div>
   );
+
 }
