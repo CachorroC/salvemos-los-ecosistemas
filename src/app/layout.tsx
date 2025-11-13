@@ -8,6 +8,7 @@ import { Josefin_Sans,
   Radio_Canada,
   Raleway, } from 'next/font/google';
 import Script from 'next/script';
+import Navbar from '#@/components/Navbar';
 
 
 const prefix = process.env.NODE_ENV === 'production'
@@ -150,6 +151,7 @@ export default function RootLayout(
       <body
         className={`${ josefinSans.className } ${ playDisp.variable }  ${ raleway.variable } ${ radio.variable } ${ ptserif.variable } [ color-scheme: light dark ]`}
       >
+        <Navbar />
         { children }
         <Script src={`${ hostname }/install-service-worker.js`} />
       </body>
