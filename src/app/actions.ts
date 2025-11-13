@@ -3,7 +3,7 @@
 import { articleCollection } from '#@/lib/connection/collections';
 import { Article, ArticleWithId } from '#@/types/article';
 
-export async function addComment(
+export async function addArticle(
   prevState: Article,
   queryData: FormData,
 ): Promise<Article> {

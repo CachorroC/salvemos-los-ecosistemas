@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint": "eslint",
     "styles:tcm": "tcm src",
     "sass": "sass --no-source-map src:src && tcm src",
-    "lint": "next lint --fix --strict && next lint --strict",
     "devbuild": "sass --no-source-map src:src && tcm src && eslint --fix . && next build",
-    "build": "next build",
-    "dev": "URL=beta.rsasesorjuridico.com NEXTAUTH_URL=https://beta.rsasesorjuridico.com next dev",
+    "build": "next build --webpack",
+    "dev": "sass --no-source-map src:src && tcm src && URL=beta.rsasesorjuridico.com NEXTAUTH_URL=https://beta.rsasesorjuridico.com next dev --turbopack",
     "start": "next start",
     "db:migrate": "prisma migrate dev --name init --create-only && prisma generate",
     "db:push": "prisma db push",
@@ -19,6 +19,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.5",
     "@stylistic/eslint-plugin": "^5.5.0",
+    "material-symbols": "^0.39.2",
     "mongodb": "^7.0.0",
     "next": "16.0.1",
     "react": "19.2.0",
@@ -27,18 +28,17 @@
     "typed-scss-modules": "^8.1.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint-config-next": "16.0.1",
-    "typescript": "^5",
-    "@eslint/js": "^9.35.0",
     "eslint": "^9.35.0",
+    "eslint-config-next": "16.0.1",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.4.0",
     "jiti": "^2.5.1",
+    "typescript": "^5",
     "typescript-eslint": "^8.44.0"
-
   }
 }
