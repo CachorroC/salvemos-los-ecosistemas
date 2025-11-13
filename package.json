@@ -20,6 +20,8 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.5",
     "@stylistic/eslint-plugin": "^5.5.0",
+    "material-symbols": "^0.39.2",
+    "mongodb": "^7.0.0",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -28,12 +30,17 @@
     "typed-scss-modules": "^8.1.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
+    "eslint": "^9.35.0",
     "eslint-config-next": "16.0.1",
-    "typescript": "^5"
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
+    "typescript": "^5",
+    "typescript-eslint": "^8.44.0"
   }
 }

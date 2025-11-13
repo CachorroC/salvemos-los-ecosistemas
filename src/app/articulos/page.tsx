@@ -1,8 +1,10 @@
+
 import NewsList from '#@/components/NewsList';
 import { articleCollection } from '#@/lib/connection/collections';
 import { Article } from '#@/types/article';
 
-const getCommentsCollection = async () => {
+async function getArticles () {
+
   const arrayList: Article[] = [];
 
   const collection = await articleCollection();
@@ -24,15 +26,13 @@ const getCommentsCollection = async () => {
   }
 
   return arrayList;
-};
+}
 
-export default async function Page() {
-  const articles = await getCommentsCollection();
+export default async  function Page () {
+
+  const articles = await getArticles();
 
   return (
-    <div>
-      <h2>Top Headlines</h2>
-      <NewsList articles={articles} />
-    </div>
+    <NewsList articles={ articles} />
   );
 }
