@@ -14,14 +14,20 @@ export default function Navbar() {
       <h1>🗞️ React News</h1>
       <div className="nav-links">
         <Link href="/">Home</Link>
-        {categories.map((cat) => (
-          <Link
-            key={cat}
-            href={`/category/${cat}`}
-          >
-            {cat}
-          </Link>
-        ))}
+        {categories.map(
+          (
+            cat 
+          ) => {
+            return (
+              <Link
+                key={cat}
+                href={`/category/${ cat }`}
+              >
+                {cat}
+              </Link>
+            );
+          } 
+        )}
       </div>
     </nav>
   );

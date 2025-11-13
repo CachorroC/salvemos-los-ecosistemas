@@ -3,8 +3,14 @@ import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function NewsCard({ article }: { article: Article }) {
-  const { title, description, url, urlToImage, source } = article;
+export default function NewsCard(
+  {
+    article 
+  }: { article: Article } 
+) {
+  const {
+    title, description, url, urlToImage, source 
+  } = article;
 
   return (
     <div className="news-card">
