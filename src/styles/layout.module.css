@@ -202,12 +202,13 @@
 }
 .link > .icon, .linkOpen > .icon, .linkOpenActive > .icon, .linkActive > .icon {
   text-align: center;
-  color: var(--on-surface-variant);
+  color: var(--on-surface);
+  width: 3.5rem;
+  padding: 0.2rem 0;
 }
 .link > .text, .linkOpen > .text, .linkOpenActive > .text, .linkActive > .text {
   opacity: 1;
-  font-size: 0.7rem;
-  font-variation-settings: "wght" 500;
+  font-size: var(--label-medium-font-size);
   font-style: var(--label-medium-font-family-style);
   font-weight: var(--label-medium-font-weight);
   color: var(--on-surface-variant);
@@ -251,11 +252,7 @@
   color: var(--on-secondary-container);
 }
 .linkOpenActive > .icon {
-  width: 3.5rem;
-  border-radius: 1rem;
-  padding: 0.2rem 0;
   color: var(--on-secondary-container);
-  box-sizing: b;
 }
 .link:hover > .text, .linkActive:hover > .text, .linkOpen:hover > .text, .linkOpenActive:hover > .text, .link:focus > .text, .linkActive:focus > .text, .linkOpen:focus > .text, .linkOpenActive:focus > .text, .link:active > .text, .linkActive:active > .text, .linkOpen:active > .text, .linkOpenActive:active > .text {
   opacity: 1;

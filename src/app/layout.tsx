@@ -10,6 +10,10 @@ import { Josefin_Sans,
 import Script from 'next/script';
 import Navbar from '#@/components/Navbar';
 import { NavigationContextProvider } from './context/navigation-context';
+import { ArticlesProvider } from './context/articles-context';
+import { Article } from '#@/types/article';
+import { articleCollection } from '#@/lib/connection/collections';
+import styles from '#@/styles/layout.module.css';
 
 
 const prefix = process.env.NODE_ENV === 'production'
@@ -134,21 +138,53 @@ const raleway = Raleway(
   }
 );
 
-export default function RootLayout(
+async function getArticles () {
+
+  const arrayList: Article[] = [];
+
+  const collection = await articleCollection();
+
+  const listCollection = collection.find();
+
+  for await ( const element of listCollection ) {
+    const stringified = JSON.stringify(
+      element
+    );
+
+    const parsed = JSON.parse(
+      stringified
+    );
+
+    arrayList.push(
+      parsed
+    );
+  }
+
+  return arrayList;
+}
+
+export default async function RootLayout(
   {
     children,
   }: Readonly<{
     children: ReactNode;
   }>
 ) {
+  const initialArticles = await getArticles();
+
   return (
     <html lang="es">
       <body
         className={`${ josefinSans.className } ${ playDisp.variable }  ${ raleway.variable } ${ radio.variable } ${ ptserif.variable } [ color-scheme: light dark ]`}
       >
         <NavigationContextProvider>
-          <Navbar />
-          { children }
+          <ArticlesProvider initialArticles={ initialArticles }>
+            <div className={styles.container}>
+              <Navbar />
+              { children }
+
+            </div>
+          </ArticlesProvider>
         </NavigationContextProvider>
         <Script src={`${ hostname }/install-service-worker.js`} />
       </body>

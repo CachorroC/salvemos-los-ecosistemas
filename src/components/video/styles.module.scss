@@ -1,0 +1,23 @@
+.button {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--shape-corner-large);
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: var(--secondary);
+    color: var(--on-secondary);
+    box-shadow: var(--elevation-1);
+  }
+  &:focus {
+    border: 1px solid var(--outline);
+  }
+}

@@ -8,7 +8,7 @@ $MaxSW: 480px; //maximum sma width
 
 .container {
   transition: all 0.5s;
-  display: grid;
+  display: flex;
   width: 100vw;
   gap: 0.03rem;
   padding: 0;
@@ -16,11 +16,7 @@ $MaxSW: 480px; //maximum sma width
   box-sizing: border-box;
   background-color: var(--surface-container);
   grid-auto-flow: row;
-  font-variation-settings:
-    'FILL' 1,
-    'wght' 700,
-    'GRAD' 0,
-    'opsz' 48;
+  font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
   grid-template-columns: 1fr;
   grid-template-areas:
     'top'
@@ -244,12 +240,13 @@ $MaxSW: 480px; //maximum sma width
   transition: all 0.3s;
   & > .icon {
     text-align: center;
-    color: var(--on-surface-variant);
+    color: var(--on-surface);
+    width: 3.5rem;
+    padding: 0.2rem 0;
   }
   & > .text {
     opacity: 1;
-    font-size: 0.7rem;
-    font-variation-settings: 'wght' 500;
+    font-size: var(--label-medium-font-size);
     font-style: var(--label-medium-font-family-style);
     font-weight: var(--label-medium-font-weight);
     color: var(--on-surface-variant);
@@ -297,11 +294,7 @@ $MaxSW: 480px; //maximum sma width
       }
 
       & > .icon {
-        width: 3.5rem;
-        border-radius: 1rem;
-        padding: 0.2rem 0;
         color: var(--on-secondary-container);
-        box-sizing: b;
       }
     }
   }
@@ -313,11 +306,7 @@ $MaxSW: 480px; //maximum sma width
     }
 
     & > .icon {
-      font-variation-settings:
-        'FILL' 1,
-        'wght' 600,
-        'GRAD' 200,
-        'opsz' 40;
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 200, 'opsz' 40;
     }
 
     &:after {
@@ -653,11 +642,7 @@ $MaxSW: 480px; //maximum sma width
 
   &:hover {
     & > .icon {
-      font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48;
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
       color: var(--primary-container);
     }
     &:after {

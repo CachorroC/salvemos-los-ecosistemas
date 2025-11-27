@@ -1,10 +1,15 @@
 FROM node:latest AS base
-RUN corepack enable && corepack enable pnpm
+WORKDIR /app
+RUN npm install -g pnpm corepack --force
+#RUN corepack enable && corepack enable pnpm
+ARG MONGODB_URI
+ENV MONGODB_URI=${MONGODB_URI}
+ARG NEXT_PUBLIC_MONGODB_URI
+ENV NEXT_PUBLIC_MONGODB_URI=${NEXT_PUBLIC_MONGODB_URI}
 
 # Step 1. Rebuild the source code only when needed
 FROM base AS builder
 
-WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
@@ -15,9 +20,9 @@ RUN pnpm add typescript-plugin-css-modules prisma
 COPY . .
 COPY src ./src
 COPY public ./public
-COPY next.config.js .
+COPY next.config.ts .
 COPY tsconfig.json .
-RUN npx prisma generate
+#RUN npx prisma generate
 
 # Environment variables must be present at build time
 # https://github.com/vercel/next.js/discussions/14030
@@ -31,7 +36,7 @@ RUN npx prisma generate
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 # Build Next.js based on the preferred package manager
-RUN pnpx prisma generate
+#RUN pnpx prisma generate
 
 RUN \
   if [ -f yarn.lock ]; then yarn build; \

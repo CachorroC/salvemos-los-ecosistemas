@@ -7,6 +7,7 @@ import { NavLink } from './NavLink';
 import { Suspense } from 'react';
 import { Drawer } from './Drawer';
 import { Loader } from './main-loader';
+import { useArticlesContext } from '#@/app/context/articles-context';
 
 const categories = [
   'business',
@@ -17,11 +18,13 @@ const categories = [
 ];
 
 export default function Navbar() {
-
-
   const {
     isNavOpen
   } = useNavigationContext();
+
+  const {
+    articlesState
+  } = useArticlesContext();
 
   return (
     <div className={styles.header}>
@@ -38,22 +41,30 @@ export default function Navbar() {
             <DrawerMenuButton />
 
             <NavLink
-              iconLabel={'contact_support'}
-              textLabel={'contacto'}
-              hrefLabel={'/articulos'}
+              iconLabel={'contextual_token'}
+              textLabel={'Artículos'}
+              hrefLabel={'/articulos' as Route}
             />
+            <NavLink iconLabel={ 'water' } textLabel={ 'Vicachá' } hrefLabel={ '/articulos/vicacha' as Route } />
 
             <NavLink
-              iconLabel={'contact_support'}
-              textLabel={'n8uevo articulo'}
-              hrefLabel={'/articulos/nuevo'}
+              iconLabel={'contextual_token_add'}
+              textLabel={'Nuevo Articulo'}
+              hrefLabel={'/articulos/nuevo' as Route}
             />
+            { articlesState.map(
+              (
+                article
+              ) => {
+                return ( <NavLink key={ article.id } iconLabel={ 'article' } textLabel={ article.title } hrefLabel={ `/articulos/${ article.id }` as Route} /> );
+              }
+            )}
             {categories.map(
               (
                 cat
               ) => {
                 return (
-                  <NavLink key={ cat } iconLabel={ '' } textLabel={ cat } hrefLabel={ `/category/${ cat }` } />
+                  <NavLink key={ cat } iconLabel={ 'news' } textLabel={ cat } hrefLabel={ `/category/${ cat }` } />
                 );
               }
             )}
